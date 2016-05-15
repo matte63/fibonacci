@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 /*  It works until 94th number, due to computer limits */
 
@@ -22,9 +23,9 @@ int main(int argc, char const *argv[]) {
   std::cout << "Enter the limit: ";
   std::cin >> n;
 
-  if (n == 1) {
+  if (n > 94) {
 
-    std::cout << "First number in \033[0;36mFibonacci sequence\033[0m is: "
+    std::cout << "\033[1;31mERROR\033[0m: Use a smaller value."
     << std::endl
     << std::endl;
 
@@ -37,74 +38,41 @@ int main(int argc, char const *argv[]) {
     << std::endl
     << std::endl;
 
-  }
+    for (i = 0; i < n; ++i) {
 
-  for (i = 0; i < n; i++) {
+      if (i <= 1) {
 
-    if (i <= 1) {
+        c = i;
 
-      c = i;
+      }
+
+      else {
+
+        c = a + b;
+        a = b;
+        b = c;
+
+      }
+
+      if (i < 10) {
+
+        std::cout << "  a(" << i << ") = \033[1;31m" << c << "\033[0m"
+        << std::endl;
+
+      }
+
+      else {
+        std::cout << " a(" << i << ") = \033[1;31m" << c << "\033[0m"
+        << std::endl;
+      }
+      std::cout << " ratio = \033[1;32m" << (float)a/b << "\033[0m"
+      << std::endl
+      << std::endl;
 
     }
 
-    else {
-
-      c = a + b;
-      a = b;
-      b = c;
-
-    }
-
-    std::cout << "         \033[1;31m" << c << "\033[0m"
-    << std::endl;
-
-    float r1;
-
-    r1 = (float)a/b;
-/*
-    std::cout << " a(" << i + 1 << ") / a(" << i << ") = " << r1
-    << std::endl
-    << std::endl;
-*/
-
-    std::cout << " ratio = \033[1;32m" << r1 << "\033[0m"
-    << std::endl
-    << std::endl;
 
   }
-
-  /* This defines ratio = a(n) / a(n-1) */
-
-/*  float r1;
-
-  r1 = (float)a/b;
-
-  std::cout << std::endl;
-  std::cout << " a(n) / a(n-1) = " << r1 << "..."
-  << std::endl
-  << std::endl;
-*/
-
-  // This defines ratio = A(63) / A(64)
-
-/*  int v;
-  float x = 0.0, y = 1.0, z, r2;
-
-  for (v = 0; v < 64; v++) {
-
-  	z = x + y;
-  	x = y;
-  	y = z;
-
-  }
-
-  r2 = x / y;
-
-	std::cout << "A(63) / A(64) = " << r2 << "... "
-  << std::endl
-  << std::endl;
-
-*/
 
   return 0;
 }
